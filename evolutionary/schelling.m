@@ -20,6 +20,7 @@ function [grid] = schelling()
     alpha = 1;              % percentage of the population group seeking new house
     beta = 0.5;             
     
+    figure;
     colormap([0 0 0; 1 0 0; 0 0 1]);    % Define colors: Red, Green, Blue 
 
     
@@ -41,7 +42,6 @@ function [grid] = schelling()
 
     % Compute current Neighborhood houses values
     houseValues = computeHouseValues(grid,delta);
-    
     plotNeighborhood(grid,houseValues);
 
     
@@ -57,7 +57,7 @@ function [grid] = schelling()
             x = indexes(i);
             for j=1:N
                 y = indexes(j);
-                
+                y
                 houseValues(x,j) = computeHouseValue(grid,x, y,grid(x,y),delta);
                         
       
@@ -163,7 +163,8 @@ function value = computeAvgPriceValue (grid)
     value = mean(mean(grid));
 end
 
-function plotNeighborhood (grid)
+function plotNeighborhood (grid,houseValues)
+    
     imagesc(grid, [0 2]);             % Display grid
     pause(0.01);                         % Pause for 0.01  
 end
