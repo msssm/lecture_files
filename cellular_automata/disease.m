@@ -58,7 +58,7 @@ for t=1:100000
             % If infected => Recover from disease with probability gamma
             if ( x(i,j)==1 && rand<gamma )
                 x(i,j) = 2;
-            end            
+            end
             
         end
     end

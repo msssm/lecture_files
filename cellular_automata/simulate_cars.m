@@ -55,7 +55,7 @@ for t=1:nIter
     % update statistics
     density = density + sum(x)/N;
 
-    
+
     % animate
     if ( withGraphics )
         clf; hold on;
