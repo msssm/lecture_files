@@ -1,6 +1,8 @@
 % Modeling and Simulating Social Systems with MATLAB
 % http://www.soms.ethz.ch/matlab
-% Author: Stefano Balietti and Karsten Donnay, 2012
+% Authors:
+% - Stefano Balietti and Karsten Donnay, 2012
+% - Tobias Kuhn, 2014
 
 function [density, flow] = simulate_cars(moveProb, inFlow, withGraphics)
 % This function is simulating cars on a highway
@@ -55,7 +57,7 @@ for t=1:nIter
     % update statistics
     density = density + sum(x)/N;
 
-
+    
     % animate
     if ( withGraphics )
         clf; hold on;
@@ -67,7 +69,7 @@ for t=1:nIter
                 draw_car(i, 0, 0.8, 0.2);
             end
         end
-        pause(.01)
+        pause(.05)
     end
 
 end

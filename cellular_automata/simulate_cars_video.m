@@ -1,13 +1,14 @@
 % Modeling and Simulating Social Systems with MATLAB
 % http://www.soms.ethz.ch/matlab
-% Author: Stefano Balietti and Karsten Donnay, 2012
+% Authors:
+% - Stefano Balietti and Karsten Donnay, 2012
+% - Tobias Kuhn, 2014
 
-function [density, flow] = simulate_cars(moveProb, inFlow, withGraphics)
+function [density, flow] = simulate_cars_video(moveProb, inFlow)
 % This function is simulating cars on a highway
 % INPUT: 
 %   moveProb: the probability for a car to move forwards, 0..1
 %   inFlowProb: The inflow volume to the road, 0..1
-%   withGraphics: Should the road be animated? true/false
 % OUTPUT:
 %   density: the average vehicle density, 0..1
 %   flow: the average flow of cars, 0..1
@@ -15,7 +16,7 @@ function [density, flow] = simulate_cars(moveProb, inFlow, withGraphics)
 
 % set parameter values
 N=40;            % road length
-nIter=100;      % number of iterations
+nIter=200;      % number of iterations
 
 
 % define road (1=car, 0=no car)
@@ -54,23 +55,20 @@ for t=1:nIter
     % update statistics
     density = density + sum(x)/N;
 
-
+    
     % animate
-    if ( withGraphics )
-        clf; hold on;
-        plot(0:N, 0*(0:N), 'Color', [.75 .75 .75], 'LineWidth', 5)
-        xlim([0 N+1])
-        ylim([-N/4 N/4])
-        for i=1:N
-            if ( x(i) )
-                draw_car(i, 0, 0.8, 0.2);
-            end
+    clf; hold on;
+    plot(0:N, 0*(0:N), 'Color', [.75 .75 .75], 'LineWidth', 5)
+    xlim([0 N+1])
+    ylim([-N/4 N/4])
+    for i=1:N
+        if ( x(i) )
+            draw_car(i, 0, 0.8, 0.2);
         end
-        % STORE VIDEO FRAMES
-        % may rise a warning in MATLAB 2011a
-        A(t)=getframe();
-        pause(.01)
     end
+    % STORE VIDEO FRAMES
+    % may rise a warning in MATLAB 2011a
+    A(t)=getframe();
 
 end
 
@@ -79,7 +77,5 @@ end
 density = density/nIter;
 flow = movedCars/(N*nIter);
 
-if ( withGraphics )
-    % SAVE VIDEO FRAMES TO FILE
-    movie2avi(A, 'video_cars.avi','fps',60);
-end
+% SAVE VIDEO FRAMES TO FILE
+movie2avi(A, 'video_cars.avi','fps',60);

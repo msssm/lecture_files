@@ -33,14 +33,14 @@ neigh = [-1 -1; 0 -1; 1 -1; 1 0; 1 1; 0 1; -1 1; -1 0];
 figure
 
 % main loop, iterating the time variable, t
-for t=1:100000
+for t=1:5000
  
     % iterate over all cells in grid x, for index i=1..N and j=1..N
     for i=1:N
         for j=1:N
             
             % Iterate over the neighbors and spread the disease
-            for k=1:8
+            for k=1:length(neigh)
                 i2 = i+neigh(k, 1);
                 j2 = j+neigh(k, 2);
                 % Check that the cell is within the grid boundaries
