@@ -265,6 +265,6 @@ end
 
 function plotNeighborhood (grid)
     imagesc(grid, [0 2]);               % Display grid
-    colormap([1 1 1; 1 0 0; 0 0 1]);    % Define colors: Red, Green, Blue
+    colormap([1 1 1; 1 0 0; 0 0 1]);    % Define colors: Red, white, Blue
     pause(0.01);                        % Pause for 0.01  
 end
